@@ -2,6 +2,51 @@ const express = require("express");
 const router = express.Router();
 const geolib = require("geolib");
 const Restaurant = require("../models/restaurants");
+const multer = require("multer");
+
+//get restaurant by image
+// const upload = multer({
+//     storage: multer.memoryStorage(),
+//     limits: {
+//       fileSize: 5 * 1024 * 1024, // limit file size to 5MB
+//     },
+//   });
+  
+//   router.post('/api/restaurants/image-search', upload.single('image'), async (req, res) => {
+//     try {
+//       if (!req.file) {
+//         return res.status(400).json({ error: 'No image file uploaded' });
+//       }
+  
+//       // Send image to prediction API
+//       const predictionResponse = await axios.post(
+//         'https://iiitstudent.ap-south-1.modelbit.com/v1/predict_image/latest',
+//         req.file.buffer,
+//         {
+//           headers: {
+//             'Content-Type': 'application/octet-stream',
+//           },
+//         }
+//       );
+  
+//       const predictedCuisine = predictionResponse.data.predicted_class;
+  
+//       // Fetch restaurants matching the predicted cuisine
+//       const query = 'SELECT * FROM restaurants WHERE LOWER(cuisines) LIKE ? LIMIT 10';
+//       const restaurants = await db.query(query, [`%${predictedCuisine.toLowerCase()}%`]);
+  
+//       res.json({
+//         predictedCuisine,
+//         restaurants,
+//       });
+//     } catch (error) {
+//       console.error('Error in image-based restaurant search:', error);
+//       res.status(500).json({ error: 'Internal server error' });
+//     }
+//   });
+  
+
+
 
 // Get Restaurant by ID
 router.get("/restaurant/:id", async (req, res) => {
@@ -19,16 +64,21 @@ router.get("/restaurant/:id", async (req, res) => {
 
 // Get List of Restaurants with Pagination
 router.get("/restaurants", async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
-  try {
-    const restaurants = await Restaurant.find()
-      .skip((page - 1) * limit)
-      .limit(parseInt(limit));
-    res.json(restaurants);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
+    const { page = 1, limit = 8 } = req.query;
+    try {
+      const restaurants = await Restaurant.find()
+        .skip((page - 1) * limit)
+        .limit(parseInt(limit));
+      
+      const totalRestaurants = await Restaurant.countDocuments();
+      
+      res.set('X-Total-Count', totalRestaurants);
+      res.json(restaurants);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
+  });
+
 
 function haversineDistance(coords1, coords2) {
   return geolib.getDistance(
@@ -36,6 +86,7 @@ function haversineDistance(coords1, coords2) {
     { latitude: coords2.lat, longitude: coords2.lng }
   );
 }
+
 // Get restaurants near given coordinates and radius
 router.get("/restaurants/near", async (req, res) => {
   const { lat, lng, radius } = req.query;

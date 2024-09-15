@@ -1,0 +1,120 @@
+/* General styles */
+.restaurant-detail {
+    max-width: 750px;
+    margin: 20px auto;
+    padding: 15px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Headings */
+  .restaurant-detail h1 {
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #ff6347;
+    padding-bottom: 8px;
+  }
+  
+  /* Image styling */
+  .restaurant-image {
+    width: 70%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  /* Info section */
+  .restaurant-info {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Bold strong elements */
+  .restaurant-info strong {
+    color: #333;
+    font-weight: 600;
+  }
+  
+  /* Individual info styling */
+  .restaurant-info p {
+    margin: 10px 0;
+    padding: 8px 12px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .restaurant-info p:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Links section */
+  .restaurant-links {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .restaurant-links a {
+    display: inline-block;
+    margin: 8px;
+    padding: 10px 20px;
+    background-color: #ff6347;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+  }
+  
+  .restaurant-links a:hover {
+    background-color: #e55342;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Loading and error states */
+  .loading, .error {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #ff6347;
+    margin-top: 20px;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .restaurant-detail {
+      padding: 10px;
+    }
+  
+    .restaurant-detail h1 {
+      font-size: 2rem;
+    }
+  
+    .restaurant-image {
+      width: 100%;
+      max-height: 200px;
+    }
+  
+    .restaurant-links a {
+      font-size: 0.8rem;
+      padding: 8px 15px;
+    }
+  }
+  

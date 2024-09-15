@@ -1,0 +1,269 @@
+/* Define Light and Dark Theme Variables */
+:root {
+    --background-color-light: #fff;
+    --text-color-light: #333;
+    --card-background-light: #fff;
+    --card-shadow-light: rgba(0, 0, 0, 0.1);
+    --link-color-light: #007bff;
+    --button-background-light: #007bff;
+    --button-text-light: #fff;
+  
+    --background-color-dark: #121212;
+    --text-color-dark: #e0e0e0;
+    --card-background-dark: #1e1e1e;
+    --card-shadow-dark: rgba(255, 255, 255, 0.2);
+    --link-color-dark: #1e90ff;
+    --button-background-dark: #1e90ff;
+    --button-text-dark: #fff;
+}
+  
+/* Light Theme Styles */
+.light-theme {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+}
+  
+.light-theme .restaurant-card {
+    background-color: var(--card-background-light);
+    box-shadow: 0 6px 20px var(--card-shadow-light);
+}
+  
+.light-theme .card-content a {
+    color: var(--link-color-light);
+}
+  
+.light-theme .pagination button {
+    background-color: var(--button-background-light);
+    color: var(--button-text-light);
+}
+  
+/* Dark Theme Styles */
+.dark-theme {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+  
+.dark-theme .restaurant-card {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 6px 20px var(--card-shadow-dark); /* Adjusted shadow for dark theme */
+}
+  
+.dark-theme .card-content a {
+    color: var(--link-color-dark);
+}
+  
+.dark-theme .pagination button {
+    background-color: var(--button-background-dark);
+    color: var(--button-text-dark);
+}
+  
+/* General Layout */
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+  
+/* Home Title */
+/* Home Title */
+
+.home-title {
+    text-align: center;
+    font-size: 3rem; /* Adjust font size as needed */
+    font-family: 'Lobster', cursive; /* Example of a stylish font */
+    color: #2512a3; /* Vibrant color */
+    margin-bottom: 30px;
+    position: relative;
+    animation: slideDown 1s ease-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for better readability */
+}
+
+  
+/* Loading and Error */
+.loading, .error {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+  
+/* Grid Layout for Restaurants */
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-content: center;
+    animation: fadeInGrid 0.8s ease-in-out;
+    /* background-color: #007bff; */
+}
+  
+/* Card for Each Restaurant */
+.restaurant-card {
+    border-radius: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    animation: slideUp 0.6s ease-in-out;
+    background-color: oldlace;
+    width: auto;
+    height: auto;
+}
+  
+.restaurant-card:hover {
+    transform: scale(1.03);
+}
+  
+/* Image Styling */
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+  
+.card-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+  
+.restaurant-card:hover .card-image img {
+    transform: scale(1.15);
+}
+  
+.placeholder-image {
+    width: 100%;
+    height: 220px;
+    background-color: #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+  
+/* Card Content */
+.card-content {
+    padding: 20px;
+    text-align: left;
+}
+  
+.card-content h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+  
+.restaurant-card:hover .card-content h2 {
+    color: #ff6347;
+}
+  
+.card-content p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+  
+.card-content a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+  
+.card-content a:hover {
+    color: #ff4500;
+}
+  
+/* Rating Stars */
+.rating {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+  
+.rating span {
+    font-size: 1.2rem;
+    position: relative;
+}
+  
+.rating span::before {
+    content: "★★★★★";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ddd;
+    z-index: 1;
+}
+  
+.rating span::after {
+    content: "★★★★★";
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #f5c518;
+    overflow: hidden;
+    z-index: 2;
+    width: 0;
+    transition: width 0.5s ease;
+}
+  
+/* Responsive Design */
+@media (max-width: 768px) {
+    .restaurant-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+}
+  
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+  
+.pagination button {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+  
+.pagination span {
+    margin: 0 10px;
+}
+  
+/* Animations */
+@keyframes fadeInGrid {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+  
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+  
+@keyframes slideDown {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

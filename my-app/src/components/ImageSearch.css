@@ -1,0 +1,143 @@
+/* Container for the image search component */
+.image-search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Heading for the search */
+  .search-heading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Form for image upload */
+  .image-upload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* File input styling */
+  .file-input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    background-color: #fff;
+    border: 2px dashed #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .file-input-wrapper:hover {
+    border-color: #007bff;
+  }
+  
+  /* Hide the actual file input */
+  .file-input {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+  
+  .file-input-label {
+    color: #555;
+    font-size: 1rem;
+    pointer-events: none;
+  }
+  
+  .file-input-wrapper:hover .file-input-label {
+    color: #007bff;
+  }
+  
+  /* Search button */
+  .search-btn {
+    padding: 0.8rem 2rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Error and loading messages */
+  .error-message,
+  .loading-message,
+  .no-results-message {
+    margin-top: 1rem;
+    color: #ff4d4d;
+    font-weight: bold;
+  }
+  
+  /* List of restaurants */
+  .restaurant-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .restaurant-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .restaurant-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Restaurant image */
+  .restaurant-image {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    border-radius: 8px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .image-search-container {
+      padding: 1rem;
+    }
+  
+    .search-heading {
+      font-size: 1.5rem;
+    }
+  
+    .file-input-wrapper {
+      padding: 8px;
+    }
+  
+    .restaurant-item {
+      padding: 0.8rem;
+    }
+  }
+  
