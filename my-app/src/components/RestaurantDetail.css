@@ -24,8 +24,8 @@
   
   /* Image styling */
   .restaurant-image {
-    width: 70%;
-    max-height: 250px;
+    width: auto;
+    max-height: auto;
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
@@ -96,6 +96,11 @@
     color: #ff6347;
     margin-top: 20px;
   }
+
+  .stars {
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: rgb(255, 170, 0); /* Change color to your preference */
+}
   
   /* Media Queries for responsiveness */
   @media (max-width: 768px) {

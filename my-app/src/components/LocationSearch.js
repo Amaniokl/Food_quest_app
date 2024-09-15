@@ -30,6 +30,14 @@ function LocationSearch() {
     }
   };
 
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating); // Full stars
+    const halfStars = rating % 1 >= 0.5 ? 1 : 0; // Half star if the decimal part is 0.5 or more
+    const emptyStars = 5 - fullStars - halfStars; // Remaining stars
+
+    const stars = '★'.repeat(fullStars) + '⯪'.repeat(halfStars) + '☆'.repeat(emptyStars);
+    return <span className="stars">{stars}</span>;
+};
   return (
     <div className="location-search-container">
       <h2 className="search-heading">Search Restaurants by Location</h2>
@@ -93,7 +101,7 @@ function LocationSearch() {
               <div className="restaurant-info">
                 <p><strong>Cuisines:</strong> {restaurant.Cuisines}</p>
                 <p><strong>Address:</strong> {restaurant.Address}</p>
-                <p><strong>Rating:</strong> {restaurant['Aggregate rating']} ({restaurant['Rating text']})</p>
+                <p><strong>Rating:</strong> {renderStars(restaurant['Aggregate rating'])} ({restaurant['Rating text']})</p>
                 <p><strong>Average Cost for Two:</strong> {restaurant['Average Cost for two']} {restaurant.Currency}</p>
               </div>
             </li>

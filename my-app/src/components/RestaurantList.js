@@ -42,6 +42,14 @@ function RestaurantList() {
 
   if (isLoading) return <div className="loading">Loading restaurants...</div>;
   if (error) return <div className="error">Error: {error}</div>;
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating); // Full stars
+    const halfStars = rating % 1 >= 0.5 ? 1 : 0; // Half star if the decimal part is 0.5 or more
+    const emptyStars = 5 - fullStars - halfStars; // Remaining stars
+
+    const stars = '★'.repeat(fullStars) + '⯪'.repeat(halfStars) + '☆'.repeat(emptyStars);
+    return <span className="stars">{stars}</span>;
+};
 
   return (
     <div className="home-container">
@@ -64,10 +72,10 @@ function RestaurantList() {
                   <Link to={`/restaurant/${restaurant['Restaurant ID']}`}>
                     <h2>{restaurant['Restaurant Name']}</h2>
                   </Link>
-                  <p>Cuisines: {restaurant.Cuisines}</p>
-                  <p>Rating: {restaurant['Aggregate rating']} ({restaurant['Rating text']})</p>
-                  <p>Location: {restaurant.City}, {restaurant['Country Code']}</p>
-                  <p>Average Cost for Two: {restaurant['Average Cost for two']} {restaurant.Currency}</p>
+                  <p><strong>Cuisines</strong>: {restaurant.Cuisines}</p>
+                  <p><strong>Rating</strong>: {renderStars(restaurant['Aggregate rating'])} ({restaurant['Rating text']})</p>
+                  <p><strong>Location</strong>: {restaurant.City}, {restaurant['Country Code']}</p>
+                  <p><strong>Average Cost for Two</strong>: {restaurant['Average Cost for two']} {restaurant.Currency}</p>
                 </div>
               </div>
             ))}

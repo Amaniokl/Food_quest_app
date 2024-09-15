@@ -29,6 +29,15 @@ function RestaurantDetail() {
     fetchRestaurantDetails();
   }, [fetchRestaurantDetails]);
 
+  const renderStars = (rating) => {
+    const fullStars = Math.floor(rating); // Full stars
+    const halfStars = rating % 1 >= 0.5 ? 1 : 0; // Half star if the decimal part is 0.5 or more
+    const emptyStars = 5 - fullStars - halfStars; // Remaining stars
+
+    const stars = '★'.repeat(fullStars) + '⯪'.repeat(halfStars) + '☆'.repeat(emptyStars);
+    return <span className="stars">{stars}</span>;
+};
+
   if (isLoading) {
     return <div className="loading">Loading restaurant details...</div>;
   }
@@ -49,7 +58,6 @@ function RestaurantDetail() {
     'Rating text': ratingText,
     'Average Cost for two': costForTwo,
     Currency,
-    'Price range': priceRange,
     Address,
     City,
     'Country Code': countryCode,
@@ -62,7 +70,8 @@ function RestaurantDetail() {
     menu_url: menuUrl,
     url: restaurantUrl,
     photos_url: photosUrl,
-    book_url: bookUrl
+    book_url: bookUrl,
+    priceRange // Ensure this is included
   } = restaurant;
 
   return (
@@ -77,9 +86,9 @@ function RestaurantDetail() {
       )}
       <div className="restaurant-info">
         <p><strong>Cuisines:</strong> {Cuisines}</p>
-        <p><strong>Rating:</strong> {rating} ({ratingText})</p>
+        <p><strong>Rating:</strong> {renderStars(rating)} ({ratingText})</p>
         <p><strong>Average Cost for Two:</strong> {costForTwo} {Currency}</p>
-        <p><strong>Price Range:</strong> {priceRange}/5</p>
+        <p><strong>Price Range:</strong> {priceRange}/5</p> {/* Ensure priceRange is defined */}
         <p><strong>Address:</strong> {Address}, {City}, {countryCode}</p>
         <p><strong>Locality:</strong> {Locality} ({localityVerbose})</p>
         <p><strong>Votes:</strong> {Votes}</p>
