@@ -5,45 +5,45 @@ const Restaurant = require("../models/restaurants");
 const multer = require("multer");
 
 //get restaurant by image
-// const upload = multer({
-//     storage: multer.memoryStorage(),
-//     limits: {
-//       fileSize: 5 * 1024 * 1024, // limit file size to 5MB
-//     },
-//   });
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+      fileSize: 5 * 1024 * 1024, // limit file size to 5MB
+    },
+  });
   
-//   router.post('/api/restaurants/image-search', upload.single('image'), async (req, res) => {
-//     try {
-//       if (!req.file) {
-//         return res.status(400).json({ error: 'No image file uploaded' });
-//       }
+  router.post('/api/restaurants/image-search', upload.single('image'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No image file uploaded' });
+      }
   
-//       // Send image to prediction API
-//       const predictionResponse = await axios.post(
-//         'https://iiitstudent.ap-south-1.modelbit.com/v1/predict_image/latest',
-//         req.file.buffer,
-//         {
-//           headers: {
-//             'Content-Type': 'application/octet-stream',
-//           },
-//         }
-//       );
+      // Send image to prediction API
+      const predictionResponse = await axios.post(
+        'https://iiitstudent.ap-south-1.modelbit.com/v1/predict_image/latest',
+        req.file.buffer,
+        {
+          headers: {
+            'Content-Type': 'application/octet-stream',
+          },
+        }
+      );
   
-//       const predictedCuisine = predictionResponse.data.predicted_class;
+      const predictedCuisine = predictionResponse.data.predicted_class;
   
-//       // Fetch restaurants matching the predicted cuisine
-//       const query = 'SELECT * FROM restaurants WHERE LOWER(cuisines) LIKE ? LIMIT 10';
-//       const restaurants = await db.query(query, [`%${predictedCuisine.toLowerCase()}%`]);
+      // Fetch restaurants matching the predicted cuisine
+      const query = 'SELECT * FROM restaurants WHERE LOWER(cuisines) LIKE ? LIMIT 10';
+      const restaurants = await db.query(query, [`%${predictedCuisine.toLowerCase()}%`]);
   
-//       res.json({
-//         predictedCuisine,
-//         restaurants,
-//       });
-//     } catch (error) {
-//       console.error('Error in image-based restaurant search:', error);
-//       res.status(500).json({ error: 'Internal server error' });
-//     }
-//   });
+      res.json({
+        predictedCuisine,
+        restaurants,
+      });
+    } catch (error) {
+      console.error('Error in image-based restaurant search:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
   
 
 
